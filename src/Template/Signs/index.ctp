@@ -11,7 +11,7 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('domainid') ?></th>
+                <th><?= $this->Paginator->sort('user_id') ?></th>
                 <th><?= $this->Paginator->sort('nome') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('hash') ?></th>
@@ -23,7 +23,7 @@
         <tbody>
             <?php foreach ($signs as $sign): ?>
             <tr>
-                <td><?= h($sign->domainid) ?></td>
+                <td><?= h($sign->user_id) ?></td>
                 <td><?= h($sign->nome) ?></td>
                 <td><?= h($sign->created) ?></td>
                 <td><?= h($sign->hash) ?></td>

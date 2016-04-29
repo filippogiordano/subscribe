@@ -1,53 +1,49 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Proposal'), ['action' => 'edit', $proposal->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Proposal'), ['action' => 'delete', $proposal->id], ['confirm' => __('Are you sure you want to delete # {0}?', $proposal->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Proposals'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Proposal'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->username]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->username], ['confirm' => __('Are you sure you want to delete # {0}?', $user->username)]) ?> </li>
+        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Proposals'), ['controller' => 'Proposals', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Proposal'), ['controller' => 'Proposals', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Signs'), ['controller' => 'Signs', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Sign'), ['controller' => 'Signs', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
-<div class="proposals view large-9 medium-8 columns content">
-    <h3><?= h($proposal->id) ?></h3>
+<div class="users view large-9 medium-8 columns content">
+    <h3><?= h($user->username) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th><?= __('Hash') ?></th>
-            <td><?= h($proposal->hash) ?></td>
+            <th><?= __('Username') ?></th>
+            <td><?= h($user->username) ?></td>
         </tr>
         <tr>
-            <th><?= __('User') ?></th>
-            <td><?= $proposal->has('user') ? $this->Html->link($proposal->user->username, ['controller' => 'Users', 'action' => 'view', $proposal->user->username]) : '' ?></td>
+            <th><?= __('Password') ?></th>
+            <td><?= h($user->password) ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($proposal->id) ?></td>
+            <th><?= __('Role') ?></th>
+            <td><?= h($user->role) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Nome') ?></th>
+            <td><?= h($user->nome) ?></td>
         </tr>
         <tr>
             <th><?= __('Created') ?></th>
-            <td><?= h($proposal->created) ?></td>
+            <td><?= h($user->created) ?></td>
         </tr>
         <tr>
             <th><?= __('Modified') ?></th>
-            <td><?= h($proposal->modified) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Data') ?></th>
-            <td><?= h($proposal->data) ?></td>
+            <td><?= h($user->modified) ?></td>
         </tr>
     </table>
-    <div class="row">
-        <h4><?= __('Testo') ?></h4>
-        <?= $this->Text->autoParagraph(h($proposal->testo)); ?>
-    </div>
     <div class="related">
         <h4><?= __('Related Comments') ?></h4>
-        <?php if (!empty($proposal->comments)): ?>
+        <?php if (!empty($user->comments)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th><?= __('Id') ?></th>
@@ -59,7 +55,7 @@
                 <th><?= __('Testo') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($proposal->comments as $comments): ?>
+            <?php foreach ($user->comments as $comments): ?>
             <tr>
                 <td><?= h($comments->id) ?></td>
                 <td><?= h($comments->created) ?></td>
@@ -79,8 +75,41 @@
         <?php endif; ?>
     </div>
     <div class="related">
+        <h4><?= __('Related Proposals') ?></h4>
+        <?php if (!empty($user->proposals)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Testo') ?></th>
+                <th><?= __('Created') ?></th>
+                <th><?= __('Modified') ?></th>
+                <th><?= __('Hash') ?></th>
+                <th><?= __('Data') ?></th>
+                <th><?= __('User Id') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($user->proposals as $proposals): ?>
+            <tr>
+                <td><?= h($proposals->id) ?></td>
+                <td><?= h($proposals->testo) ?></td>
+                <td><?= h($proposals->created) ?></td>
+                <td><?= h($proposals->modified) ?></td>
+                <td><?= h($proposals->hash) ?></td>
+                <td><?= h($proposals->data) ?></td>
+                <td><?= h($proposals->user_id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Proposals', 'action' => 'view', $proposals->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Proposals', 'action' => 'edit', $proposals->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Proposals', 'action' => 'delete', $proposals->id], ['confirm' => __('Are you sure you want to delete # {0}?', $proposals->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
         <h4><?= __('Related Signs') ?></h4>
-        <?php if (!empty($proposal->signs)): ?>
+        <?php if (!empty($user->signs)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th><?= __('User Id') ?></th>
@@ -91,7 +120,7 @@
                 <th><?= __('Id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($proposal->signs as $signs): ?>
+            <?php foreach ($user->signs as $signs): ?>
             <tr>
                 <td><?= h($signs->user_id) ?></td>
                 <td><?= h($signs->nome) ?></td>

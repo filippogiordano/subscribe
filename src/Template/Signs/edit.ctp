@@ -17,7 +17,7 @@
     <fieldset>
         <legend><?= __('Edit Sign') ?></legend>
         <?php
-            echo $this->Form->input('domainid');
+            echo $this->Form->input('user_id');
             echo $this->Form->input('nome');
             echo $this->Form->input('hash');
             echo $this->Form->input('proposal_id', ['options' => $proposals]);

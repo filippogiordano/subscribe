@@ -2,6 +2,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Proposal'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Signs'), ['controller' => 'Signs', 'action' => 'index']) ?></li>
@@ -16,8 +18,9 @@
                 <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
-                <th><?= $this->Paginator->sort('hash') //da eliminare?></th>
+                <th><?= $this->Paginator->sort('hash') ?></th>
                 <th><?= $this->Paginator->sort('data') ?></th>
+                <th><?= $this->Paginator->sort('user_id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -29,6 +32,7 @@
                 <td><?= h($proposal->modified) ?></td>
                 <td><?= h($proposal->hash) ?></td>
                 <td><?= h($proposal->data) ?></td>
+                <td><?= $proposal->has('user') ? $this->Html->link($proposal->user->username, ['controller' => 'Users', 'action' => 'view', $proposal->user->username]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $proposal->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $proposal->id]) ?>

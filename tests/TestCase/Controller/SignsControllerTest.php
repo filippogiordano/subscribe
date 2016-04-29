@@ -18,6 +18,7 @@ class SignsControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.signs',
         'app.proposals',
+        'app.users',
         'app.comments'
     ];
 

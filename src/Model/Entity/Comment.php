@@ -12,7 +12,7 @@ use Cake\ORM\Entity;
  * @property int $proposal_id
  * @property \App\Model\Entity\Proposal $proposal
  * @property string $nome
- * @property string $domainid
+ * @property string $user_id
  * @property string $testo
  */
 class Comment extends Entity

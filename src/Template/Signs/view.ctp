@@ -13,8 +13,8 @@
     <h3><?= h($sign->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th><?= __('Domainid') ?></th>
-            <td><?= h($sign->domainid) ?></td>
+            <th><?= __('User Id') ?></th>
+            <td><?= h($sign->user_id) ?></td>
         </tr>
         <tr>
             <th><?= __('Nome') ?></th>

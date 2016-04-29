@@ -26,6 +26,7 @@ class SignsTableTest extends TestCase
     public $fixtures = [
         'app.signs',
         'app.proposals',
+        'app.users',
         'app.comments'
     ];
 

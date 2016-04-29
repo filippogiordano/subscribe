@@ -19,7 +19,7 @@
         <?php
             echo $this->Form->input('proposal_id', ['options' => $proposals]);
             echo $this->Form->input('nome');
-            echo $this->Form->input('domainid');
+            echo $this->Form->input('user_id');
             echo $this->Form->input('testo');
         ?>
     </fieldset>

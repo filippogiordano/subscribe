@@ -6,7 +6,7 @@ use Cake\ORM\Entity;
 /**
  * Sign Entity.
  *
- * @property string $domainid
+ * @property string $user_id
  * @property string $nome
  * @property \Cake\I18n\Time $created
  * @property string $hash

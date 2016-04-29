@@ -4,20 +4,19 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Proposal Entity.
+ * User Entity.
  *
- * @property int $id
- * @property string $testo
+ * @property string $username
+ * @property string $password
+ * @property string $role
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
- * @property string $hash
- * @property \Cake\I18n\Time $data
- * @property string $user_id
- * @property \App\Model\Entity\User $user
+ * @property string $nome
  * @property \App\Model\Entity\Comment[] $comments
+ * @property \App\Model\Entity\Proposal[] $proposals
  * @property \App\Model\Entity\Sign[] $signs
  */
-class Proposal extends Entity
+class User extends Entity
 {
 
     /**
@@ -31,6 +30,15 @@ class Proposal extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
+        'username' => false,
+    ];
+
+    /**
+     * Fields that are excluded from JSON an array versions of the entity.
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'password'
     ];
 }

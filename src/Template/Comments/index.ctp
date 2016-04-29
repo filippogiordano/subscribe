@@ -16,7 +16,7 @@
                 <th><?= $this->Paginator->sort('modified') ?></th>
                 <th><?= $this->Paginator->sort('proposal_id') ?></th>
                 <th><?= $this->Paginator->sort('nome') ?></th>
-                <th><?= $this->Paginator->sort('domainid') ?></th>
+                <th><?= $this->Paginator->sort('user_id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -28,7 +28,7 @@
                 <td><?= h($comment->modified) ?></td>
                 <td><?= $comment->has('proposal') ? $this->Html->link($comment->proposal->id, ['controller' => 'Proposals', 'action' => 'view', $comment->proposal->id]) : '' ?></td>
                 <td><?= h($comment->nome) ?></td>
-                <td><?= h($comment->domainid) ?></td>
+                <td><?= h($comment->user_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $comment->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $comment->id]) ?>

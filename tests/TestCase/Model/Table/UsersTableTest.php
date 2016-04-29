@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\CommentsTable;
+use App\Model\Table\UsersTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\CommentsTable Test Case
+ * App\Model\Table\UsersTable Test Case
  */
-class CommentsTableTest extends TestCase
+class UsersTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\CommentsTable
+     * @var \App\Model\Table\UsersTable
      */
-    public $Comments;
+    public $Users;
 
     /**
      * Fixtures
@@ -24,9 +24,9 @@ class CommentsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.users',
         'app.comments',
         'app.proposals',
-        'app.users',
         'app.signs'
     ];
 
@@ -38,8 +38,8 @@ class CommentsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Comments') ? [] : ['className' => 'App\Model\Table\CommentsTable'];
-        $this->Comments = TableRegistry::get('Comments', $config);
+        $config = TableRegistry::exists('Users') ? [] : ['className' => 'App\Model\Table\UsersTable'];
+        $this->Users = TableRegistry::get('Users', $config);
     }
 
     /**
@@ -49,7 +49,7 @@ class CommentsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Comments);
+        unset($this->Users);
 
         parent::tearDown();
     }

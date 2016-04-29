@@ -1,24 +1,23 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Proposals'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Proposals'), ['controller' => 'Proposals', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Proposal'), ['controller' => 'Proposals', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Signs'), ['controller' => 'Signs', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Sign'), ['controller' => 'Signs', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="proposals form large-9 medium-8 columns content">
-    <?= $this->Form->create($proposal) ?>
+<div class="users form large-9 medium-8 columns content">
+    <?= $this->Form->create($user) ?>
     <fieldset>
-        <legend><?= __('Add Proposal') ?></legend>
+        <legend><?= __('Add User') ?></legend>
         <?php
-            echo $this->Form->input('testo');
-            echo $this->Form->input('hash');
-            echo $this->Form->input('data');
-            echo $this->Form->input('user_id', ['options' => $users]);
+            echo $this->Form->input('password');
+            echo $this->Form->input('role');
+            echo $this->Form->input('nome');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

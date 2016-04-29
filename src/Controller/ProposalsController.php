@@ -18,6 +18,9 @@ class ProposalsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Users']
+        ];
         $proposals = $this->paginate($this->Proposals);
 
         $this->set(compact('proposals'));
@@ -34,7 +37,7 @@ class ProposalsController extends AppController
     public function view($id = null)
     {
         $proposal = $this->Proposals->get($id, [
-            'contain' => ['Comments', 'Signs']
+            'contain' => ['Users', 'Comments', 'Signs']
         ]);
 
         $this->set('proposal', $proposal);
@@ -58,7 +61,8 @@ class ProposalsController extends AppController
                 $this->Flash->error(__('The proposal could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('proposal'));
+        $users = $this->Proposals->Users->find('list', ['limit' => 200]);
+        $this->set(compact('proposal', 'users'));
         $this->set('_serialize', ['proposal']);
     }
 
@@ -83,7 +87,8 @@ class ProposalsController extends AppController
                 $this->Flash->error(__('The proposal could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('proposal'));
+        $users = $this->Proposals->Users->find('list', ['limit' => 200]);
+        $this->set(compact('proposal', 'users'));
         $this->set('_serialize', ['proposal']);
     }
 

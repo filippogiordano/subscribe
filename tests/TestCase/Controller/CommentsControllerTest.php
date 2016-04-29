@@ -18,6 +18,7 @@ class CommentsControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.comments',
         'app.proposals',
+        'app.users',
         'app.signs'
     ];
 

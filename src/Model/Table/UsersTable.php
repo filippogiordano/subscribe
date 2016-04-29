@@ -1,19 +1,20 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Comment;
+use App\Model\Entity\User;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Comments Model
+ * Users Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Proposals
- * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\HasMany $Comments
+ * @property \Cake\ORM\Association\HasMany $Proposals
+ * @property \Cake\ORM\Association\HasMany $Signs
  */
-class CommentsTable extends Table
+class UsersTable extends Table
 {
 
     /**
@@ -26,19 +27,20 @@ class CommentsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('comments');
-        $this->displayField('id');
-        $this->primaryKey('id');
+        $this->table('users');
+        $this->displayField('username');
+        $this->primaryKey('username');
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Proposals', [
-            'foreignKey' => 'proposal_id',
-            'joinType' => 'INNER'
+        $this->hasMany('Comments', [
+            'foreignKey' => 'user_id'
         ]);
-        $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+        $this->hasMany('Proposals', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Signs', [
+            'foreignKey' => 'user_id'
         ]);
     }
 
@@ -51,16 +53,17 @@ class CommentsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->allowEmpty('username', 'create');
+
+        $validator
+            ->allowEmpty('password');
+
+        $validator
+            ->allowEmpty('role');
 
         $validator
             ->requirePresence('nome', 'create')
             ->notEmpty('nome');
-
-        $validator
-            ->requirePresence('testo', 'create')
-            ->notEmpty('testo');
 
         return $validator;
     }
@@ -74,8 +77,7 @@ class CommentsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['proposal_id'], 'Proposals'));
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->isUnique(['username']));
         return $rules;
     }
 }

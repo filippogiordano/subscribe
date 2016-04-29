@@ -21,8 +21,8 @@
             <td><?= h($comment->nome) ?></td>
         </tr>
         <tr>
-            <th><?= __('Domainid') ?></th>
-            <td><?= h($comment->domainid) ?></td>
+            <th><?= __('User Id') ?></th>
+            <td><?= h($comment->user_id) ?></td>
         </tr>
         <tr>
             <th><?= __('Id') ?></th>

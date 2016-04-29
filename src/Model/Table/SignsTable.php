@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
 /**
  * Signs Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Users
  * @property \Cake\ORM\Association\BelongsTo $Proposals
  */
 class SignsTable extends Table
@@ -31,6 +32,10 @@ class SignsTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
+        ]);
         $this->belongsTo('Proposals', [
             'foreignKey' => 'proposal_id',
             'joinType' => 'INNER'
@@ -45,10 +50,6 @@ class SignsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->requirePresence('domainid', 'create')
-            ->notEmpty('domainid');
-
         $validator
             ->requirePresence('nome', 'create')
             ->notEmpty('nome');
@@ -73,6 +74,7 @@ class SignsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['proposal_id'], 'Proposals'));
         return $rules;
     }
