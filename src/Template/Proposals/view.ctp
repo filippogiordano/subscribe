@@ -17,6 +17,10 @@
     <h3><?= h($proposal->id) ?></h3>
     <table class="vertical-table">
         <tr>
+            <th><?= __('Subject') ?></th>
+            <td><?= h($proposal->subject) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Hash') ?></th>
             <td><?= h($proposal->hash) ?></td>
         </tr>
@@ -29,16 +33,16 @@
             <td><?= $this->Number->format($proposal->id) ?></td>
         </tr>
         <tr>
+            <th><?= __('Data') ?></th>
+            <td><?= h($proposal->data) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Created') ?></th>
             <td><?= h($proposal->created) ?></td>
         </tr>
         <tr>
             <th><?= __('Modified') ?></th>
             <td><?= h($proposal->modified) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Data') ?></th>
-            <td><?= h($proposal->data) ?></td>
         </tr>
     </table>
     <div class="row">

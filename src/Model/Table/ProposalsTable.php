@@ -58,17 +58,21 @@ class ProposalsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('testo', 'create')
-            ->notEmpty('testo');
+            ->requirePresence('subject', 'create')
+            ->notEmpty('subject');
 
         $validator
-            ->requirePresence('hash', 'create')
-            ->notEmpty('hash');
+            ->requirePresence('testo', 'create')
+            ->notEmpty('testo');
 
         $validator
             ->dateTime('data')
             ->requirePresence('data', 'create')
             ->notEmpty('data');
+
+        $validator
+            ->requirePresence('hash', 'create')
+            ->notEmpty('hash');
 
         return $validator;
     }

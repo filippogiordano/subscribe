@@ -7,11 +7,12 @@ use Cake\ORM\Entity;
  * Proposal Entity.
  *
  * @property int $id
+ * @property string $subject
  * @property string $testo
+ * @property \Cake\I18n\Time $data
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  * @property string $hash
- * @property \Cake\I18n\Time $data
  * @property string $user_id
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Comment[] $comments

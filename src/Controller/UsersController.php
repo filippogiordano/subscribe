@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 /**
  * Users Controller
  *
@@ -10,7 +10,28 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
-
+	public function beforeFilter(Event $event)
+	{
+		parent::beforeFilter($event);
+		$this->Auth->allow('add','logout');
+	}
+	public function login()
+	{
+		if ($this->request->is('post')) {
+			$user = $this->Auth->identify();
+			if ($user) {
+				$this->Auth->setUser($user);
+				return $this->redirect($this->Auth->redirectUrl());
+			}
+			$this->Flash->error(__('Invalid username or password, try again'));
+		}
+	}
+	
+	public function logout()
+	{
+		return $this->redirect($this->Auth->logout());
+	}
+	
     /**
      * Index method
      *
@@ -50,12 +71,21 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
+        	debug($this->request->data);
             $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'index']);
+            $temp= $this->Users->find('all')
+            ->where(['username' => $this->request->data['username']])->toArray();
+            if (empty($temp)) {
+            	if ($this->Users->save($user)) {//false){//
+                	$this->Flash->success(__('The user has been saved.'));
+                	return $this->redirect(['action' => 'login']);
+            	} else {
+                	$this->Flash->error(__('The user could not be saved. Please, try again.'));
+                	debug($temp);
+            	}
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            	$this->Flash->error(__('Sei già registrato. Effettua il login.'));
+            	return $this->redirect(['action' => 'login']);
             }
         }
         $this->set(compact('user'));

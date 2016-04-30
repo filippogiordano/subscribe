@@ -10,7 +10,28 @@ use App\Controller\AppController;
  */
 class ProposalsController extends AppController
 {
-
+	public function isOwnedBy($proposalId, $username)
+	{
+		return $this->Proposals->exists(['id' => $proposalId, 'user_id' => $username]);
+	}
+	
+	public function isAuthorized($user)
+	{
+		// All registered users can add proposals
+		if ($this->request->action === 'add') {
+			return true;
+		}
+		//debug($user);
+		// The owner of an article can edit and delete it
+		if (in_array($this->request->action, ['edit', 'delete'])) {
+			$proposalId = (int)$this->request->params['pass'][0];
+			if ($this->isOwnedBy($proposalId, $user['username'])) {
+				return true;
+			}
+		}
+	
+		return parent::isAuthorized($user);
+	}
     /**
      * Index method
      *
@@ -54,6 +75,7 @@ class ProposalsController extends AppController
         $proposal = $this->Proposals->newEntity();
         if ($this->request->is('post')) {
             $proposal = $this->Proposals->patchEntity($proposal, $this->request->data);
+            $proposal->user_id = $this->Auth->user('username');
             if ($this->Proposals->save($proposal)) {
                 $this->Flash->success(__('The proposal has been saved.'));
                 return $this->redirect(['action' => 'index']);

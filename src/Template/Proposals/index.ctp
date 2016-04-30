@@ -16,10 +16,11 @@
         <thead>
             <tr>
                 <th><?= $this->Paginator->sort('id') ?></th>
+                <th><?= $this->Paginator->sort('subject') ?></th>
+                <th><?= $this->Paginator->sort('data') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
                 <th><?= $this->Paginator->sort('hash') ?></th>
-                <th><?= $this->Paginator->sort('data') ?></th>
                 <th><?= $this->Paginator->sort('user_id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -28,10 +29,11 @@
             <?php foreach ($proposals as $proposal): ?>
             <tr>
                 <td><?= $this->Number->format($proposal->id) ?></td>
+                <td><?= h($proposal->subject) ?></td>
+                <td><?= h($proposal->data) ?></td>
                 <td><?= h($proposal->created) ?></td>
                 <td><?= h($proposal->modified) ?></td>
                 <td><?= h($proposal->hash) ?></td>
-                <td><?= h($proposal->data) ?></td>
                 <td><?= $proposal->has('user') ? $this->Html->link($proposal->user->username, ['controller' => 'Users', 'action' => 'view', $proposal->user->username]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $proposal->id]) ?>

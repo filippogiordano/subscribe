@@ -15,11 +15,14 @@
     <fieldset>
         <legend><?= __('Add User') ?></legend>
         <?php
-            echo $this->Form->input('password');
-            echo $this->Form->input('role');
+        	echo $this->Form->input('username',['label'=>'Inserisci il tuo dpp..','type' => 'text']);
+            echo $this->Form->input('password',['label'=>'inserisci la password']);
+            echo $this->Form->input('role', [
+            		'options' => ['admin' => 'Admin', 'author' => 'Author']
+            ]);
             echo $this->Form->input('nome');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Register')) ?>
     <?= $this->Form->end() ?>
 </div>

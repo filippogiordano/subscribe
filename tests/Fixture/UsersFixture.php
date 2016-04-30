@@ -17,7 +17,7 @@ class UsersFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'username' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => '', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'username' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'password' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'role' => ['type' => 'string', 'length' => 20, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
@@ -40,11 +40,11 @@ class UsersFixture extends TestFixture
      */
     public $records = [
         [
-            'username' => 'b2699a0d-f35c-4b26-9df8-34f286bd5750',
+            'username' => 'cd2a4a6c-86f3-4643-a3f1-66918e25f626',
             'password' => 'Lorem ipsum dolor sit amet',
             'role' => 'Lorem ipsum dolor ',
-            'created' => '2016-04-29 14:05:25',
-            'modified' => '2016-04-29 14:05:25',
+            'created' => '2016-04-29 14:08:26',
+            'modified' => '2016-04-29 14:08:26',
             'nome' => 'Lorem ipsum dolor sit amet'
         ],
     ];

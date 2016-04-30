@@ -21,9 +21,10 @@
     <fieldset>
         <legend><?= __('Edit Proposal') ?></legend>
         <?php
+            echo $this->Form->input('subject');
             echo $this->Form->input('testo');
-            echo $this->Form->input('hash');
             echo $this->Form->input('data');
+            echo $this->Form->input('hash');
             echo $this->Form->input('user_id', ['options' => $users]);
         ?>
     </fieldset>
